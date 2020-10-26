@@ -1,0 +1,9 @@
+package ObserverPattern;
+
+import java.util.ArrayList;
+
+public interface Subscriber {
+	
+	public boolean notifySubscriber(Event e);
+    
+}

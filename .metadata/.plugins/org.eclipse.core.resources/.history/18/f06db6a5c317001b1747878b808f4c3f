@@ -1,0 +1,49 @@
+package ObserverPattern;
+
+import java.util.ArrayList;
+
+public class SubscriberOdds implements Subscriber{
+	
+	private int eventsHandled;
+	private int turnOffThreshold;
+	public int threshold = 21;
+	public SubscriberOdds() 
+	{
+		
+	}
+	
+	public void notifysubscriber(Event e, PublisherImpl pub) {
+        if (e.getEventDataValue() % 2 != 0) {
+            System.out.println("SubscriberOdds Event " + e.getEventSeqNum() + " is odd: " + e.getEventDataValue());
+            this.addEvent(e);
+            if (events.size() > 21) {
+                this.unregisterMe(pub);
+            }
+        }
+    }
+	
+	public void unregisterMe(PublisherImpl p) {
+        p.unregisterSubscriber(this);
+        events.clear();
+    }
+
+    public void addEvent(Event e) {
+        events.add(e);
+    }
+
+    public ArrayList < Event > getEvents() {
+        return events;
+    }
+	
+	
+//	private void setEventsHandled(boolean B) {
+//		
+//	}
+//	
+//	private boolean getEventsHandled() {
+//		return false;		
+//	}
+
+
+
+}

@@ -1,0 +1,34 @@
+package ObserverPattern;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+import java.util.ArrayList;
+
+import org.junit.jupiter.api.Test;
+
+class PublisherImplTest {
+
+	@Test
+	void test1() {
+		PublisherImpl pub = new PublisherImpl();
+		SubscriberOdds subsodd =  new SubscriberOdds(21);
+		pub.registerSubscriber(subsodd);
+		Boolean b = pub.unregisterSubscriber(subsodd);
+		assertEquals(true, b);
+	}
+	
+	
+	@Test
+	void test2() {
+		
+		PublisherImpl pub = new PublisherImpl();
+		
+		pub.runSimulation();
+		
+		if(pub.runSimulation()==true) {
+			
+			assertEquals(true, pub.runSimulation());
+		}
+	}
+
+}

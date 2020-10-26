@@ -1,0 +1,58 @@
+package ObserverPattern;
+
+import java.util.ArrayList;
+import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
+
+public class PublisherImpl implements Publisher{
+
+	private ArrayList<Subscriber> subscribers= new ArrayList<Subscriber>();
+	ArrayList < Subscriber > unsubscribers = new ArrayList < Subscriber > ();
+	public PublisherImpl() {}
+	public void registerSubscriber(Subscriber s) {
+		
+		subscribers.add(s);
+		
+	}
+	public void unregisterSubscriber(Subscriber s) {
+		subscribers.remove(s);
+		unsubscribers.add(s);
+		
+	}
+	public void notifySubscribers(Event e) {
+		
+		for (int i = 0; i < subscribers.size(); i++) {
+            subscribers.get(i).notifysubscriber(e, this);
+        }
+		
+	}
+	 private Event generateEvent(int eNum, int eData) {
+	        Event e = new Event(eNum, eData);
+	        return e;
+	    }
+	 
+	 
+	 
+	 public void runSimulation(int numEvents) {
+	        for (int i = 1; i <= numEvents; i++) {
+	            Random rand = new Random();
+	            int randInt = rand.nextInt(200);
+	            Event e = generateEvent(i, randInt);
+	            this.notifySubscribers(e);
+	            if (i % 40 == 0) {
+	                for (int idx = 0; idx < unsubscribers.size(); idx++) {
+	                    this.registerSubscriber(unsubscribers.get(idx));
+	                    unsubscribers.remove(unsubscribers.get(idx));
+	                }
+	            }
+	        }
+	    }
+	 public ArrayList < Subscriber > getSubs() {
+	        return subscribers;
+	    }
+
+	    public ArrayList < Subscriber > getUsubs() {
+	        return unsubscribers;
+	    }
+
+}

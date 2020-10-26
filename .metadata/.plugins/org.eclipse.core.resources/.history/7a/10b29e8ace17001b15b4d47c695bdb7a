@@ -1,0 +1,83 @@
+package ObserverPattern;
+
+import java.util.ArrayList;
+
+public class SubscriberOdds implements Subscriber{
+	
+	private int eventsHandled;
+	private int turnOffThreshold;
+	public int threshold = 21;
+	
+	public SubscriberOdds(int i) 
+	{
+		
+	}
+	
+	public boolean notifySubscriber(Event e) {
+		
+		System.out.println("SubscriberOdds was called");
+		if (e.getEventDataValue() %2 !=0 )
+		{
+			eventsHandled++;
+			if (getEventshandled()<=turnOffThreshold)
+			{
+				System.out.println("SubscriberOdds, Event is odd");
+				System.out.println("Events Handled for SubscriberOdds "+ getEventshandled());
+				System.out.println("Threshold for SubscriberOddEvens"+ turnOffThreshold);
+				
+				return true;
+			}
+			else
+			{
+				System.out.println("Threshold reached");
+				if(eventsHandled%40 == 0)
+					{
+					System.out.println("Resetting events counter to zero");
+					eventsHandled=0;
+					if (eventsHandled == 0)
+						return false;
+					}
+			}
+		}
+		return false;
+			
+	}
+
+	
+	public void unregisterMe(PublisherImpl p) {
+        p.unregisterSubscriber(this);
+        events.clear();
+    }
+
+    public void addEvent(Event e) {
+        events.add(e);
+    }
+
+    public ArrayList < Event > getEvents1() {
+        return events;
+    }
+	
+	
+    public int getEventshandled() {
+		return eventsHandled;
+	}
+
+	public void setEventshandled(int eventshandled) {
+		this.eventsHandled = eventshandled;
+	}
+
+	@Override
+	public void notifysubscriber() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public ArrayList<Event> getEvents() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+
+}

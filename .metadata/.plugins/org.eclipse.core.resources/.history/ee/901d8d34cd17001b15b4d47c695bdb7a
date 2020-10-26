@@ -1,0 +1,24 @@
+package ObserverPattern;
+
+public class HWMain {
+
+	
+	public static void main(String[] args) {
+		
+		
+		PublisherImpl pub = new PublisherImpl();
+		
+		Subscriber odds = new SubscriberOdds(21);
+		Subscriber evens = new SubscriberEven(14);
+		Subscriber threes = new SubscriberThrees();
+		
+		pub.registerSubscriber(odds);
+        pub.registerSubscriber(evens);
+        pub.registerSubscriber(threes);
+
+        int howManySims = 200;
+        pub.runSimulation();
+
+	
+	}
+}

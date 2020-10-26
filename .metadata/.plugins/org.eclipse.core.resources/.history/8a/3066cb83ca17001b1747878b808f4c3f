@@ -1,0 +1,47 @@
+package ObserverPattern;
+
+import java.util.ArrayList;
+
+public class SubscriberThrees implements Subscriber {
+	
+	private int eventsHandled;
+	private int turnOffThreshold;
+	
+	public SubscriberThrees() {}
+	
+	 public void notifysubscriber(Event e, PublisherImpl pub) {
+	        if (e.getEventDataValue() % 3 == 0) {
+	            System.out.println("SubscriberThrees Event " + e.getEventSeqNum() + " is divisible by 3: " + e.getEventDataValue());
+	            this.addEvent(e);
+	            if (events.size() > 10) {
+	                this.unregisterMe(pub);
+	            }
+	        }
+	    }
+	 
+	 public void unregisterMe(PublisherImpl p) {
+	        p.unregisterSubscriber(this);
+	        events.clear();
+	    }
+	 
+	 
+	 public void addEvent(Event e) {
+	        events.add(e);
+	    }
+
+	 public ArrayList<Event> getEvents() {
+			return events;
+		}
+
+	
+	private void setEventsHandled(Boolean b) {
+		
+	}
+
+	private boolean getEventsHandled() {
+		return false;
+		
+	}
+
+
+}

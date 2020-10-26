@@ -1,0 +1,26 @@
+package ObserverPattern;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.jupiter.api.Test;
+
+class SubscriberEvenTest {
+
+	@Test
+	void test() {
+		
+		SubscriberEven se = new SubscriberEven(14);
+		
+		Event e = new Event(0, 0);
+		
+		boolean value = se.notifysubscriber(null);
+			
+		assertEquals(false, value);
+			
+		se.notifySubscriber(e);		
+			
+		assertEquals(true, se.notifysubscriber(e));
+			
+		}
+		
+	}

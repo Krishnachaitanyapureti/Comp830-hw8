@@ -1,0 +1,16 @@
+package ObserverPattern;
+
+public class Subscriber {
+
+		public void registerSubscriber(Subscriber s);
+		
+		public void unregisterSubscriber(Subscriber s);
+		
+		
+		public void notifySubscribers(Event e);
+			
+			
+		
+	}
+
+}
